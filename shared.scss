@@ -1,9 +1,133 @@
+// importing font family
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$colors: (
+  main: rgba(72, 104, 97, 1),
+  sec: rgba(217, 233, 181, 1),
+  white: rgb(255, 255, 255),
+);
+
+// reset browser default tags
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "poppins", sans-serif;
 }
 
-h1 {
-  color: red;
+header {
+  .header__overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      96deg,
+      map-get($colors, sec) 46%,
+      map-get($colors, main) 47%
+    );
+    position: absolute;
+  }
+}
+
+.header__picture {
+  img {
+    position: absolute;
+    z-index: 100;
+    right: 5px;
+    top: 58px;
+    width: 50%;
+    height: 90%;
+  }
+}
+
+.header-content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 3em 0em 3em;
+}
+
+/* LOGO */
+.logo img {
+  width: 120px;
+  height: 60px;
+  display: relative;
+  animation: spin 5s linear 1s infinite none;
+}
+
+/* NAV LINKS */
+.nav-link {
+  color: map-get($colors, white);
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.5s;
+  padding: 10px;
+  margin: 10px 20px;
+}
+
+.nav-link.active {
+  color: map-get($colors, sec);
+}
+
+.nav-link:hover {
+  color: map-get($colors, main);
+  background-color: map-get($colors, sec);
+  border-radius: 26px;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+$c-border: white;
+
+.sparkle {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.u-hover--sparkle {
+  box-sizing: border-box;
+  position: relative;
+  padding: 0.75em;
+  &::before,
+  &::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform-origin: center;
+  }
+
+  &::before {
+    border-top: 0.2em solid $c-border;
+    border-bottom: 0.2em solid $c-border;
+    transform: scale3d(0, 1, 1);
+    border-radius: 26px;
+  }
+
+  &::after {
+    border-left: 0.2em solid $c-border;
+    border-right: 0.2em solid $c-border;
+    border-radius: 26px;
+    transform: scale3d(1, 0, 1);
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scale3d(1, 1, 1);
+    transition: transform 900ms;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////////
+@keyframes spin {
+  0% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
